@@ -181,9 +181,9 @@ export default function Home() {
             <ProgressItem day="Day 10" task="核心元件 ①（Confidence · Status · Activity · Dialog）" done />
             <ProgressItem day="Day 11" task="核心元件 ②（PanicButton · TraceTimeline）" done />
             <ProgressItem day="Day 12-13" task="三大場景組裝（A / B / C）" done />
-            <ProgressItem day="Day 14" task="首頁完成 + 完整串連" done current />
-            <ProgressItem day="Day 15" task="動畫打磨" />
-            <ProgressItem day="Later" task="反向輸出 Figma Design Spec" />
+            <ProgressItem day="Day 14" task="首頁完成 + 完整串連" done />
+            <ProgressItem day="Day 15" task="動畫打磨（entrance stagger · Panic slide-down · Confidence fill）" done current />
+            <ProgressItem day="Later" task="Living Spec 升級（設計決策文件化）" />
           </div>
         </section>
 

@@ -77,7 +77,7 @@ export default function DesignSystemPage() {
               className="mb-4 font-mono text-xs animate-fade-up"
               style={{ animationDelay: "0ms" }}
             >
-              v0.1 · Day 9
+              v0.2 · Living Spec
             </Badge>
             <h1
               className="text-5xl font-semibold tracking-tight mb-4 animate-fade-up"
@@ -108,6 +108,44 @@ export default function DesignSystemPage() {
                 — 使用者洞察，Week 1
               </p>
             </div>
+
+            {/* About this spec */}
+            <div
+              className="mt-10 rounded-xl border border-border bg-card p-6 animate-fade-up"
+              style={{ animationDelay: "380ms" }}
+            >
+              <div className="flex items-center gap-2 mb-3">
+                <span
+                  className="text-[11px] font-mono uppercase tracking-wider px-2 py-0.5 rounded"
+                  style={{
+                    color: "var(--primary)",
+                    backgroundColor:
+                      "color-mix(in oklch, var(--primary) 12%, transparent)",
+                  }}
+                >
+                  How to read
+                </span>
+                <span className="text-xs text-muted-foreground">
+                  這份 Spec 怎麼讀
+                </span>
+              </div>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                每個 token、每個元件旁邊會出現
+                <span
+                  className="mx-1 inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-mono uppercase"
+                  style={{
+                    color: "var(--primary)",
+                    backgroundColor:
+                      "color-mix(in oklch, var(--primary) 12%, transparent)",
+                  }}
+                >
+                  Why
+                </span>
+                區塊，紀錄的是「為什麼這樣設計、而不是那樣」。
+                這不是規範文件，而是設計爭議時的仲裁紀錄 —
+                下次改版時能看懂每個決策的成本與交易。
+              </p>
+            </div>
           </section>
 
           {/* COLORS */}
@@ -122,6 +160,23 @@ export default function DesignSystemPage() {
                 <ColorToken name="accent" oklch="0.28 0.015 55" useCase="Hover 狀態" swatchClass="bg-accent" />
                 <ColorToken name="primary" oklch="0.72 0.17 50" useCase="品牌、CTA、重要動作" swatchClass="bg-primary" />
               </div>
+              <DesignNote label="Why 暖橙而非冷色系">
+                <p>
+                  金融產品 9 成使用冷色藍（Robinhood、Coinbase、傳統銀行 app），原因是傳達「冷靜、專業、可信」。
+                  TrustGuard 故意反其道而行 — Week 1 訪談中，使用者對 AI 代理人的核心恐懼是「它冷冰冰地把錢搞丟」。
+                </p>
+                <p>
+                  暖橙（oklch 0.72 0.17 50）是決策的解藥：有溫度、有生命、但飽和度夠低不刺眼。
+                  對應原則 03「夥伴關係，不是代理」— 顏色本身就是立場宣言。
+                </p>
+              </DesignNote>
+              <DesignNote label="Why 深色底">
+                <p>
+                  訪談顯示 Web3 使用者多在凌晨監看（時差、亞洲市場、鏈上事件），暗色介面對眼睛友善。
+                  另一層原因是「警示色的對比強度」— 深色底讓 Panic 紅與 Warning 橘能拉出足夠視覺差異，
+                  不會像亮色底那樣被整體色調稀釋。
+                </p>
+              </DesignNote>
             </Subsection>
 
             {/* Text */}
@@ -141,6 +196,16 @@ export default function DesignSystemPage() {
                 <ColorToken name="info" oklch="0.7 0.13 225" useCase="中性提示" swatchClass="bg-info" />
                 <ColorToken name="destructive" oklch="0.68 0.23 25" useCase="刪除、撤銷" swatchClass="bg-destructive" />
               </div>
+              <DesignNote label="Why destructive ≠ panic">
+                <p>
+                  Destructive（紅偏粉）給「小範圍危險動作」使用 — 刪除一筆紀錄、取消一次訂閱。
+                  Panic（飽和正紅）保留給「整個 session 級別的撤退」— 撤銷所有授權、切斷錢包連線。
+                </p>
+                <p>
+                  兩者故意拉開色相差距（25° vs 25° 但飽和度差 0.04），避免使用者把「刪除交易」的肌肉記憶用在「緊急制動」。
+                  這是原則 02「Panic 色是神聖的」的色票落地。
+                </p>
+              </DesignNote>
             </Subsection>
 
             {/* Panic - Sacred */}
@@ -215,6 +280,18 @@ export default function DesignSystemPage() {
                   </div>
                 ))}
               </div>
+              <DesignNote label="Why 4 階，不是 3 階或 5 階">
+                <p>
+                  大多數 AI 產品只顯示「高 / 中 / 低」三階。TrustGuard 故意切成四階，關鍵差異在
+                  <span className="text-foreground"> Critical（&lt;30%）</span>獨立出來 —
+                  它的語意不是「信心很低」，而是「我建議你拒絕」。
+                </p>
+                <p>
+                  3 階會讓 Low 同時包含「35% 需要你確認」與「15% 我不建議做」，
+                  這兩個決策分歧很大。5 階又太細 — 使用者不會分辨 85% 和 92% 的差別。
+                  4 階剛好對應四種不同動作：自主執行 / 執行但通知 / 暫停請示 / 拒絕。
+                </p>
+              </DesignNote>
             </Subsection>
           </Section>
 
@@ -259,6 +336,17 @@ export default function DesignSystemPage() {
                 <div>0.3 ETH → 1,247.58 USDC</div>
                 <div>Block #18,923,456 · Gas 0.0042 ETH</div>
               </div>
+              <DesignNote label="Why 三種字體">
+                <p>
+                  Inter 處理拉丁文、Noto Sans TC 處理中文、Geist Mono 處理機器資料 —
+                  三者的 x-height 與字重刻意挑過相近的，讓中英混排時同一層級視覺重量一致。
+                </p>
+                <p>
+                  Mono 不是為了「工程師氣質」— 是因為 hash、地址、gas 這類資料需要
+                  <span className="text-foreground">等寬對齊掃讀</span>，使用者比對 0x 開頭的前後 4 碼時才不會錯位。
+                  這是原則 04「證據優先於承諾」的排版層面體現：鏈上資料用 mono，讓它看起來就是可驗證的。
+                </p>
+              </DesignNote>
             </Subsection>
           </Section>
 
@@ -308,6 +396,13 @@ export default function DesignSystemPage() {
                   </div>
                 ))}
               </div>
+              <DesignNote label="Why radius 偏大">
+                <p>
+                  基數從 10px 起跳、卡片預設 xl/2xl（14–18px），刻意比多數 fintech 圓潤。
+                  尖角傳達「專業、嚴肅」，但對 AI 代理人來說容易過度冷漠；
+                  圓角讓整個介面有「擬人感」，對應暖橙做的是同一件事 — 把硬體感柔化成夥伴感。
+                </p>
+              </DesignNote>
             </Subsection>
           </Section>
 
@@ -323,6 +418,16 @@ export default function DesignSystemPage() {
               <ShadowDemo name="shadow-glow-primary" className="shadow-glow-primary" note="AI 思考中" />
               <ShadowDemo name="shadow-glow-panic" className="shadow-glow-panic" note="Panic 狀態" />
             </div>
+            <DesignNote label="Why Glow 而不是加粗邊框">
+              <p>
+                Agent 的「狀態」是動態的（思考中、警戒中），用 glow 擴散出邊框之外，
+                視覺上更像「輻射、呼吸」，比 solid border 更能傳達「它在運作」。
+              </p>
+              <p>
+                另一個原因：glow 本身是低飽和的顏色外溢，即使同時有 primary glow 和 panic glow 出現在同一畫面，
+                也不會互相搶焦 — 但如果是 2px border，視覺衝突會很強。
+              </p>
+            </DesignNote>
           </Section>
 
           {/* COMPONENTS */}
@@ -476,6 +581,17 @@ export default function DesignSystemPage() {
                   </div>
                 </div>
               </div>
+              <DesignNote label="Why 4 個 variant，不是 1 個">
+                <p>
+                  信心分數會出現在完全不同密度的畫面 — 卡片標頭只有 16px 高（用 dot），
+                  對話框按鈕旁需要數字但不能搶焦（用 badge），Portfolio 大圖需要視覺主角（用 ring），
+                  推理過程需要比較多組信心度（用 bar）。
+                </p>
+                <p>
+                  同一筆資料用不同 variant 表達是故意的 — 原則 05「透明度要校準」：
+                  資訊的重要性隨情境變化，元件要能隨之伸縮，而不是一種尺寸套到底。
+                </p>
+              </DesignNote>
             </Subsection>
 
             {/* StatusIndicator */}
@@ -567,6 +683,22 @@ export default function DesignSystemPage() {
                   message="依您設定的保守策略，自動賣出 0.3 ETH 換為 1,247 USDC。"
                 />
               </div>
+              <DesignNote label="Why AI 需要四種語氣">
+                <p>
+                  多數 AI 產品只有一種聲音 — 中性、禮貌、略帶行銷感。TrustGuard 把 AI 的語氣拆成四種，
+                  因為 AI 在不同情境下對使用者的「情感負擔」完全不同：
+                </p>
+                <p>
+                  <span className="text-foreground">info</span> = 不打擾的摘要；
+                  <span className="text-foreground"> question</span> = 主動承認不確定（對應原則 03）；
+                  <span className="text-foreground"> alert</span> = 該讓使用者警覺但不恐慌；
+                  <span className="text-foreground"> success</span> = 完成後簡潔回報，不邀功。
+                </p>
+                <p>
+                  Alert 使用 scale + bounce 的 entrance animation，其他三種只是 fade-up —
+                  動畫節奏本身就是語氣的一部分。
+                </p>
+              </DesignNote>
             </Subsection>
 
             {/* PanicButton */}
@@ -613,6 +745,21 @@ export default function DesignSystemPage() {
                   中途放開則取消。
                 </p>
               </div>
+              <DesignNote label="Why 長按 1.5 秒，不是確認對話框">
+                <p>
+                  PanicButton 是「不可逆動作」的代表 — 撤銷後所有授權需重新簽署。
+                  業界慣例是「點擊 → 跳確認框 → 點 Yes」，但在恐慌場景下這個流程有兩個問題：
+                </p>
+                <p>
+                  <span className="text-foreground">1.</span> 使用者真的恐慌時，會連續快速點擊，確認框會被肌肉記憶秒點通過。
+                  <span className="text-foreground"> 2.</span> 確認框從按鈕處「飛出來」的時間成本與長按相當，但失去了「給使用者一個冷靜的 1.5 秒」。
+                </p>
+                <p>
+                  長按的設計讓使用者在按住的過程中能夠
+                  <span className="text-foreground">反悔 — 放手就取消</span>。
+                  進度條視覺化這個「還沒發生、但正在逼近」的狀態，等於給使用者一個物理層面的 undo 緩衝。
+                </p>
+              </DesignNote>
             </Subsection>
 
             {/* TraceTimeline */}
@@ -623,6 +770,20 @@ export default function DesignSystemPage() {
               <div className="rounded-xl border border-border bg-card p-6 max-w-2xl">
                 <TraceTimeline steps={sampleTrace} />
               </div>
+              <DesignNote label="Why 把推理軌跡拆成 4 種節點">
+                <p>
+                  Black box 問題的標準解法是「把決策過程攤開」— 但若只是一串文字，使用者會略過。
+                  TraceTimeline 把推理拆成
+                  <span className="text-foreground"> data → reasoning → decision → action </span>
+                  四種節點，每種節點的 icon 和可展開的 evidence 結構不同。
+                </p>
+                <p>
+                  這個四段式對應心智模型：
+                  「我看到什麼」→「我怎麼想」→「我決定什麼」→「我做了什麼」。
+                  使用者可以在任一段質疑 AI — 是資料錯？推理錯？還是決策錯？
+                  這是原則 04「證據優先於承諾」最直接的介面落地。
+                </p>
+              </DesignNote>
             </Subsection>
           </Section>
 
@@ -657,6 +818,18 @@ export default function DesignSystemPage() {
                 </p>
               </div>
             </div>
+            <DesignNote label="Why 1.4s 與 1.8s，不是更快">
+              <p>
+                Thinking 用 1.4s 是貼近人類呼吸節奏（成人平均 12–16 次/分鐘，約 4s 一次完整呼吸、1.5s 一次吸氣）。
+                比這快會像「心跳過快」傳達焦慮；比這慢則失去「正在運作」的暗示。
+              </p>
+              <p>
+                Panic 脈衝故意用 1.8s — 比思考更慢。直覺上會以為緊急就該快閃，但快閃會讓使用者腎上腺素爆發、
+                做出不理性決定。1.8s 的節奏傳達的是
+                <span className="text-foreground">「這很嚴重，但請冷靜看」</span>，
+                配合長按 1.5s 的 PanicButton，整個 Panic 場景的節奏設計是「讓你警覺、但不讓你慌」。
+              </p>
+            </DesignNote>
           </Section>
 
           {/* PRINCIPLES */}
@@ -721,9 +894,9 @@ export default function DesignSystemPage() {
 
           {/* Footer */}
           <footer className="pt-12 border-t border-border text-sm text-muted-foreground">
-            <p>TrustGuard Design System · v0.1 · Day 9</p>
+            <p>TrustGuard Design System · v0.2 · Living Spec</p>
             <p className="mt-1">
-              由 UX 研究 → 設計 tokens → 元件庫 → 場景應用。
+              由 UX 研究 → 設計 tokens → 元件庫 → 場景應用 → 每個決策都有「Why」。
             </p>
           </footer>
         </main>
@@ -804,6 +977,35 @@ function ColorToken({
           oklch({oklch})
         </p>
         <p className="text-xs text-muted-foreground mt-2">{useCase}</p>
+      </div>
+    </div>
+  );
+}
+
+function DesignNote({
+  label = "Why",
+  children,
+}: {
+  label?: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <div
+      className="mt-4 rounded-lg border-l-2 pl-4 py-3 pr-4"
+      style={{
+        borderLeftColor: "var(--primary)",
+        backgroundColor:
+          "color-mix(in oklch, var(--primary) 5%, var(--card))",
+      }}
+    >
+      <p
+        className="text-[10px] font-mono uppercase tracking-wider mb-1.5"
+        style={{ color: "var(--primary)" }}
+      >
+        {label}
+      </p>
+      <div className="text-sm text-muted-foreground leading-relaxed space-y-2">
+        {children}
       </div>
     </div>
   );

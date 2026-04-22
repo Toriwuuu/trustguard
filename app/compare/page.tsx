@@ -12,6 +12,7 @@ import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { SiteTopBar } from "@/components/layout/SiteTopBar";
+import { Aurora } from "@/components/ui/aurora";
 import { Reveal } from "@/components/ui/reveal";
 import { ConfidenceScore } from "@/components/trust/ConfidenceScore";
 import {
@@ -28,7 +29,8 @@ import {
 
 export default function ComparePage() {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen relative isolate overflow-x-clip">
+      <Aurora intensity="subtle" />
       <SiteTopBar />
 
       <main className="max-w-6xl mx-auto px-4 md:px-8">

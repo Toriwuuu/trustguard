@@ -19,6 +19,7 @@ import {
   Shield,
 } from "lucide-react";
 import { SiteTopBar } from "@/components/layout/SiteTopBar";
+import { Aurora } from "@/components/ui/aurora";
 import { ConfidenceScore } from "@/components/trust/ConfidenceScore";
 import { StatusIndicator } from "@/components/trust/StatusIndicator";
 import { ActivityCard } from "@/components/trust/ActivityCard";
@@ -45,7 +46,8 @@ const NAV = [
 
 export default function DesignSystemPage() {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen relative isolate overflow-x-clip">
+      <Aurora intensity="subtle" />
       <SiteTopBar />
 
       <div className="max-w-7xl mx-auto px-4 md:px-8 flex gap-12">

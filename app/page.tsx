@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { SiteTopBar } from "@/components/layout/SiteTopBar";
+import { Aurora } from "@/components/ui/aurora";
 import {
   ArrowRight,
   ShieldAlert,
@@ -15,7 +16,8 @@ import {
 
 export default function Home() {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen relative isolate overflow-x-clip">
+      <Aurora intensity="normal" />
       <SiteTopBar />
 
       <main className="max-w-5xl mx-auto px-4 md:px-8">

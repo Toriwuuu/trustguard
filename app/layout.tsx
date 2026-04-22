@@ -35,7 +35,21 @@ export default function RootLayout({
       lang="zh-TW"
       className={`${inter.variable} ${notoTC.variable} ${geistMono.variable} dark h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-background text-foreground">
+      <body className="min-h-full flex flex-col bg-background text-foreground relative isolate">
+        {/* 全站底紋：細點陣 + 上方 radial mask，遠看像紙張 texture */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none fixed inset-0 -z-10"
+          style={{
+            backgroundImage:
+              "radial-gradient(circle, oklch(1 0 0 / 0.04) 1px, transparent 1px)",
+            backgroundSize: "28px 28px",
+            maskImage:
+              "radial-gradient(ellipse 90% 70% at 50% 10%, black 30%, transparent 85%)",
+            WebkitMaskImage:
+              "radial-gradient(ellipse 90% 70% at 50% 10%, black 30%, transparent 85%)",
+          }}
+        />
         {children}
       </body>
     </html>

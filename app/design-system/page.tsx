@@ -72,20 +72,33 @@ export default function DesignSystemPage() {
         <main className="flex-1 min-w-0 pt-16 pb-32 space-y-24">
           {/* Hero */}
           <section>
-            <Badge variant="outline" className="mb-4 font-mono text-xs">
+            <Badge
+              variant="outline"
+              className="mb-4 font-mono text-xs animate-fade-up"
+              style={{ animationDelay: "0ms" }}
+            >
               v0.1 · Day 9
             </Badge>
-            <h1 className="text-5xl font-semibold tracking-tight mb-4">
+            <h1
+              className="text-5xl font-semibold tracking-tight mb-4 animate-fade-up"
+              style={{ animationDelay: "80ms" }}
+            >
               Design System
             </h1>
-            <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl">
+            <p
+              className="text-lg text-muted-foreground leading-relaxed max-w-2xl animate-fade-up"
+              style={{ animationDelay: "180ms" }}
+            >
               TrustGuard 是為 AI 投資代理人設計的信任 UX 探索。
               這套系統以 <span className="text-foreground">深色暖調 + 溫暖橙</span>{" "}
               為核心，所有元件圍繞 5 條設計原則展開。
             </p>
 
             {/* Philosophy pullquote */}
-            <div className="mt-10 pl-6 border-l-2 border-primary">
+            <div
+              className="mt-10 pl-6 border-l-2 border-primary animate-fade-up"
+              style={{ animationDelay: "280ms" }}
+            >
               <p className="text-base leading-relaxed italic text-foreground/90">
                 &ldquo;使用者最害怕的不是 AI 做錯選擇，
                 <br />

@@ -56,19 +56,31 @@ export function TraceTimeline({ steps, className = "" }: TraceTimelineProps) {
           key={step.id}
           step={step}
           isLast={i === steps.length - 1}
+          index={i}
         />
       ))}
     </ol>
   );
 }
 
-function TraceNode({ step, isLast }: { step: TraceStep; isLast: boolean }) {
+function TraceNode({
+  step,
+  isLast,
+  index,
+}: {
+  step: TraceStep;
+  isLast: boolean;
+  index: number;
+}) {
   const [expanded, setExpanded] = useState(false);
   const meta = kindMeta[step.kind];
   const { Icon } = meta;
 
   return (
-    <li className="relative pl-12 pb-6 last:pb-0">
+    <li
+      className="relative pl-12 pb-6 last:pb-0 animate-fade-up"
+      style={{ animationDelay: `${index * 140}ms` }}
+    >
       {/* 連接線 — 最後一個節點不畫 */}
       {!isLast && (
         <span

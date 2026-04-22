@@ -4,6 +4,7 @@ import { PortfolioSummary } from "@/components/trust/PortfolioSummary";
 import { ActivityCard } from "@/components/trust/ActivityCard";
 import { AgentDialog } from "@/components/trust/AgentDialog";
 import { TraceTimeline } from "@/components/trust/TraceTimeline";
+import { Reveal } from "@/components/ui/reveal";
 import {
   sampleAgent,
   samplePortfolio,
@@ -30,15 +31,19 @@ export default function DashboardPage() {
       {/* Main content */}
       <main className="max-w-7xl mx-auto px-4 md:px-8 py-8 space-y-6">
         {/* Agent 身份列 */}
-        <AgentHeader agent={sampleAgent} />
+        <Reveal delay={0}>
+          <AgentHeader agent={sampleAgent} />
+        </Reveal>
 
         {/* 兩欄佈局：左大 右小 */}
         <div className="grid lg:grid-cols-[1fr_380px] gap-6">
           {/* 左欄：組合 + 活動 */}
           <div className="space-y-6 min-w-0">
-            <PortfolioSummary portfolio={samplePortfolio} />
+            <Reveal delay={80}>
+              <PortfolioSummary portfolio={samplePortfolio} />
+            </Reveal>
 
-            <section>
+            <Reveal as="section" delay={160}>
               <div className="flex items-center justify-between mb-4">
                 <h2 className="text-lg font-semibold">最近活動</h2>
                 <span className="text-xs text-muted-foreground">
@@ -46,11 +51,17 @@ export default function DashboardPage() {
                 </span>
               </div>
               <div className="grid md:grid-cols-2 gap-4">
-                {activities.map((activity) => (
-                  <ActivityCard key={activity.id} activity={activity} />
+                {activities.map((activity, i) => (
+                  <div
+                    key={activity.id}
+                    className="animate-fade-up"
+                    style={{ animationDelay: `${200 + i * 80}ms` }}
+                  >
+                    <ActivityCard activity={activity} />
+                  </div>
                 ))}
               </div>
-            </section>
+            </Reveal>
           </div>
 
           {/* 右欄：Agent 對話 + 推理軌跡 */}
@@ -66,7 +77,7 @@ export default function DashboardPage() {
               }
             />
 
-            <section className="rounded-2xl border border-border bg-card p-5">
+            <Reveal as="section" delay={240} className="rounded-2xl border border-border bg-card p-5">
               <div className="flex items-center justify-between mb-4">
                 <h3 className="text-sm font-semibold">最近一次決策軌跡</h3>
                 <span className="text-[11px] text-muted-foreground font-mono">
@@ -74,7 +85,7 @@ export default function DashboardPage() {
                 </span>
               </div>
               <TraceTimeline steps={sampleTrace} />
-            </section>
+            </Reveal>
           </aside>
         </div>
       </main>

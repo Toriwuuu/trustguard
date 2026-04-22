@@ -21,22 +21,35 @@ export default function Home() {
       <main className="max-w-5xl mx-auto px-4 md:px-8">
         {/* Hero */}
         <section className="pt-24 pb-16">
-          <Badge variant="outline" className="mb-6 font-mono">
+          <Badge
+            variant="outline"
+            className="mb-6 font-mono animate-fade-up"
+            style={{ animationDelay: "0ms" }}
+          >
             Web3 × Agentic AI · Portfolio Case Study
           </Badge>
 
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-semibold tracking-tight leading-[1.05] mb-6 max-w-3xl">
+          <h1
+            className="text-4xl sm:text-5xl md:text-6xl font-semibold tracking-tight leading-[1.05] mb-6 max-w-3xl animate-fade-up"
+            style={{ animationDelay: "80ms" }}
+          >
             AI 代理人的
             <br />
             <span className="text-primary">透明化駕駛艙</span>
           </h1>
 
-          <p className="text-xl text-muted-foreground leading-relaxed max-w-2xl mb-8">
+          <p
+            className="text-xl text-muted-foreground leading-relaxed max-w-2xl mb-8 animate-fade-up"
+            style={{ animationDelay: "180ms" }}
+          >
             當 AI 從「助理」變成「代理人」，UX 面臨一個新命題——
             如何讓使用者既能放手，又能隨時拉回控制權？
           </p>
 
-          <div className="flex flex-wrap gap-3">
+          <div
+            className="flex flex-wrap gap-3 animate-fade-up"
+            style={{ animationDelay: "280ms" }}
+          >
             <Link href="/dashboard">
               <Button size="lg">
                 進入 Dashboard
@@ -82,6 +95,7 @@ export default function Home() {
               desc="AI 在凌晨自動完成再平衡，使用者醒來查看成績單。"
               accent="success"
               icon={<Sparkles className="size-5" />}
+              delay={0}
             />
             <ScenarioCard
               href="/dashboard/low-confidence"
@@ -91,6 +105,7 @@ export default function Home() {
               desc="市場異常、AI 信心下降，主動徵詢使用者意見。"
               accent="warning"
               icon={<Eye className="size-5" />}
+              delay={100}
             />
             <ScenarioCard
               href="/dashboard/panic"
@@ -100,6 +115,7 @@ export default function Home() {
               desc="偵測可疑活動，使用者按下緊急制動，所有授權即刻撤銷。"
               accent="panic"
               icon={<ShieldAlert className="size-5" />}
+              delay={200}
             />
           </div>
         </section>
@@ -115,36 +131,40 @@ export default function Home() {
           </p>
 
           <div className="grid md:grid-cols-2 gap-4">
-            <Principle
-              number="01"
-              title="翻譯，不是展示"
-              desc="不把 API 回來的數字原封不動倒給使用者。把「3.42 USDC」翻譯成「過去 24 小時的質押收益」。"
-              icon={<Languages className="size-5" />}
-            />
-            <Principle
-              number="02"
-              title="Panic 色是神聖的"
-              desc="大面積紅色只為「必須立刻反應」的時刻保留。一旦濫用，使用者的警覺會鈍化。"
-              icon={<ShieldAlert className="size-5" />}
-            />
-            <Principle
-              number="03"
-              title="夥伴關係，不是代理"
-              desc="AI 不該假裝無所不知。信心度低就主動求助，把決策權還給使用者。"
-              icon={<Handshake className="size-5" />}
-            />
-            <Principle
-              number="04"
-              title="證據優先於承諾"
-              desc="不說「相信我」。說「這是我看到的資料、我的推理步驟、我做了什麼」。每一步都可追溯。"
-              icon={<FileSearch className="size-5" />}
-            />
-            <Principle
-              number="05"
-              title="透明度要校準"
-              desc="日常不需要攤開所有日誌，緊急時要把所有細節擺到眼前。透明度隨情境調整。"
-              icon={<SlidersHorizontal className="size-5" />}
-            />
+            {[
+              {
+                number: "01",
+                title: "翻譯，不是展示",
+                desc: "不把 API 回來的數字原封不動倒給使用者。把「3.42 USDC」翻譯成「過去 24 小時的質押收益」。",
+                icon: <Languages className="size-5" />,
+              },
+              {
+                number: "02",
+                title: "Panic 色是神聖的",
+                desc: "大面積紅色只為「必須立刻反應」的時刻保留。一旦濫用，使用者的警覺會鈍化。",
+                icon: <ShieldAlert className="size-5" />,
+              },
+              {
+                number: "03",
+                title: "夥伴關係，不是代理",
+                desc: "AI 不該假裝無所不知。信心度低就主動求助，把決策權還給使用者。",
+                icon: <Handshake className="size-5" />,
+              },
+              {
+                number: "04",
+                title: "證據優先於承諾",
+                desc: "不說「相信我」。說「這是我看到的資料、我的推理步驟、我做了什麼」。每一步都可追溯。",
+                icon: <FileSearch className="size-5" />,
+              },
+              {
+                number: "05",
+                title: "透明度要校準",
+                desc: "日常不需要攤開所有日誌，緊急時要把所有細節擺到眼前。透明度隨情境調整。",
+                icon: <SlidersHorizontal className="size-5" />,
+              },
+            ].map((p, i) => (
+              <Principle key={p.number} {...p} delay={i * 80} />
+            ))}
           </div>
         </section>
 
@@ -199,6 +219,7 @@ function ScenarioCard({
   desc,
   accent,
   icon,
+  delay = 0,
 }: {
   href: string;
   index: string;
@@ -207,6 +228,7 @@ function ScenarioCard({
   desc: string;
   accent: "success" | "warning" | "panic";
   icon: React.ReactNode;
+  delay?: number;
 }) {
   const accentClasses = {
     success: "border-success/30 bg-success/5 text-success",
@@ -217,7 +239,8 @@ function ScenarioCard({
   return (
     <Link
       href={href}
-      className="group block rounded-xl border border-border bg-card p-6 hover:border-primary/40 hover:bg-accent/30 transition-colors"
+      className="group block rounded-xl border border-border bg-card p-6 hover:border-primary/40 hover:-translate-y-0.5 hover:bg-accent/30 transition-all duration-300 animate-fade-up"
+      style={{ animationDelay: `${delay}ms` }}
     >
       <div className="flex items-center justify-between mb-4">
         <div
@@ -249,14 +272,19 @@ function Principle({
   title,
   desc,
   icon,
+  delay = 0,
 }: {
   number: string;
   title: string;
   desc: string;
   icon: React.ReactNode;
+  delay?: number;
 }) {
   return (
-    <div className="rounded-xl border border-border bg-card p-6">
+    <div
+      className="rounded-xl border border-border bg-card p-6 animate-fade-up hover:border-primary/30 transition-colors"
+      style={{ animationDelay: `${delay}ms` }}
+    >
       <div className="flex items-start gap-4 mb-3">
         <div
           className="size-10 rounded-lg grid place-items-center shrink-0"

@@ -19,6 +19,7 @@ import { AgentDialog } from "@/components/trust/AgentDialog";
 import { TraceTimeline } from "@/components/trust/TraceTimeline";
 import { PanicButton } from "@/components/trust/PanicButton";
 import { StatusIndicator } from "@/components/trust/StatusIndicator";
+import { Reveal } from "@/components/ui/reveal";
 import {
   sampleAgent,
   samplePortfolio,
@@ -89,7 +90,7 @@ export default function PanicPage() {
 
       {/* 頂部紅色警示條 */}
       <div
-        className="border-b"
+        className="border-b animate-slide-down"
         style={{
           backgroundColor:
             "color-mix(in oklch, var(--panic) 12%, var(--background))",
@@ -109,7 +110,9 @@ export default function PanicPage() {
       </div>
 
       <main className="max-w-7xl mx-auto px-4 md:px-8 py-8 space-y-6">
-        <AgentHeader agent={criticalAgent} onRevoke={handleRevoke} />
+        <Reveal delay={120}>
+          <AgentHeader agent={criticalAgent} onRevoke={handleRevoke} />
+        </Reveal>
 
         {/* 警示對話框 */}
         <AgentDialog
@@ -124,7 +127,7 @@ export default function PanicPage() {
         />
 
         {/* 三欄控制區 */}
-        <section className="grid md:grid-cols-3 gap-4">
+        <Reveal as="section" delay={280} className="grid md:grid-cols-3 gap-4">
           <div className="rounded-2xl border border-border bg-card p-5">
             <div className="flex items-center gap-2 mb-2">
               <Zap className="size-4" style={{ color: "var(--success)" }} />
@@ -192,7 +195,7 @@ export default function PanicPage() {
               label={revoked ? "已撤銷" : "長按撤銷所有授權"}
             />
           </div>
-        </section>
+        </Reveal>
 
         {/* 兩欄：攔截紀錄 + 推理軌跡 */}
         <div className="grid lg:grid-cols-[1fr_380px] gap-6">

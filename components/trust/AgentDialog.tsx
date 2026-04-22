@@ -73,10 +73,11 @@ export function AgentDialog({
 }: AgentDialogProps) {
   const meta = toneMeta[tone];
   const { Icon } = meta;
+  const animClass = tone === "alert" ? "animate-alert-in" : "animate-scale-in";
 
   return (
     <div
-      className={`relative rounded-2xl border bg-card p-5 pl-6 ${className}`}
+      className={`relative rounded-2xl border bg-card p-5 pl-6 ${animClass} ${className}`}
       style={{
         borderColor: `color-mix(in oklch, ${meta.accent} 25%, var(--border))`,
       }}

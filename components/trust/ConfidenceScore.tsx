@@ -14,8 +14,22 @@
      high ≥ 90  / medium ≥ 60 / low ≥ 30 / critical < 30
    ============================================ */
 
+import { useEffect, useState } from "react";
 import { getConfidenceTier, getConfidenceCSSVar } from "@/lib/mock-data";
 import type { ConfidenceTier } from "@/lib/mock-data";
+
+/**
+ * 在 mount 之後把數值從 0 漸進到目標值，
+ * 讓 bar/ring 有「填上來」的節奏感。
+ */
+function useAnimatedValue(target: number, delay = 60) {
+  const [value, setValue] = useState(0);
+  useEffect(() => {
+    const id = window.setTimeout(() => setValue(target), delay);
+    return () => window.clearTimeout(id);
+  }, [target, delay]);
+  return value;
+}
 
 type Size = "sm" | "md" | "lg";
 type Variant = "bar" | "ring" | "dot" | "badge";
@@ -115,6 +129,7 @@ function BarVariant({
 }) {
   const heightClass = { sm: "h-1", md: "h-1.5", lg: "h-2" }[size];
   const textClass = { sm: "text-[10px]", md: "text-xs", lg: "text-sm" }[size];
+  const animated = useAnimatedValue(value);
 
   return (
     <div className={`w-full ${className}`}>
@@ -130,8 +145,8 @@ function BarVariant({
         className={`w-full rounded-full bg-muted/60 overflow-hidden ${heightClass}`}
       >
         <div
-          className="h-full rounded-full transition-[width] duration-500 ease-out"
-          style={{ width: `${value}%`, backgroundColor: color }}
+          className="h-full rounded-full transition-[width] duration-700 ease-out"
+          style={{ width: `${animated}%`, backgroundColor: color }}
         />
       </div>
     </div>
@@ -157,7 +172,8 @@ function RingVariant({
   const stroke = { sm: 4, md: 5, lg: 6 }[size];
   const radius = (dim - stroke) / 2;
   const circumference = 2 * Math.PI * radius;
-  const offset = circumference - (value / 100) * circumference;
+  const animated = useAnimatedValue(value);
+  const offset = circumference - (animated / 100) * circumference;
   const textClass = { sm: "text-[11px]", md: "text-sm", lg: "text-lg" }[size];
 
   return (
@@ -186,7 +202,7 @@ function RingVariant({
           strokeDasharray={circumference}
           strokeDashoffset={offset}
           style={{
-            transition: "stroke-dashoffset 500ms ease-out",
+            transition: "stroke-dashoffset 800ms cubic-bezier(0.22, 1, 0.36, 1)",
           }}
         />
       </svg>

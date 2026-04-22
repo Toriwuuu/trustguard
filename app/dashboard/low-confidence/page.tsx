@@ -17,6 +17,7 @@ import { ActivityCard } from "@/components/trust/ActivityCard";
 import { AgentDialog } from "@/components/trust/AgentDialog";
 import { TraceTimeline } from "@/components/trust/TraceTimeline";
 import { ConfidenceScore } from "@/components/trust/ConfidenceScore";
+import { Reveal } from "@/components/ui/reveal";
 import {
   sampleAgent,
   samplePortfolio,
@@ -82,7 +83,9 @@ export default function LowConfidencePage() {
       <DashboardTopBar />
 
       <main className="max-w-7xl mx-auto px-4 md:px-8 py-8 space-y-6">
-        <AgentHeader agent={thinkingAgent} />
+        <Reveal delay={0}>
+          <AgentHeader agent={thinkingAgent} />
+        </Reveal>
 
         {/* 顯眼的求助對話框 — 置頂強調 */}
         {decision === "pending" && (
@@ -148,9 +151,11 @@ export default function LowConfidencePage() {
         {/* 兩欄佈局 */}
         <div className="grid lg:grid-cols-[1fr_380px] gap-6">
           <div className="space-y-6 min-w-0">
-            <PortfolioSummary portfolio={samplePortfolio} />
+            <Reveal delay={120}>
+              <PortfolioSummary portfolio={samplePortfolio} />
+            </Reveal>
 
-            <section>
+            <Reveal as="section" delay={200}>
               <div className="flex items-center justify-between mb-4">
                 <h2 className="text-lg font-semibold">等待中的決策</h2>
                 <span className="text-xs text-muted-foreground">
@@ -164,7 +169,7 @@ export default function LowConfidencePage() {
                   onReject={handleReject}
                 />
               )}
-            </section>
+            </Reveal>
           </div>
 
           <aside className="space-y-6 min-w-0">

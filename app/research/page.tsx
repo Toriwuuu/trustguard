@@ -39,15 +39,25 @@ export default function ResearchPage() {
       <main className="max-w-5xl mx-auto px-4 md:px-8">
         {/* Hero */}
         <section className="pt-24 pb-16">
-          <Badge variant="outline" className="mb-6 font-mono">
+          <Badge
+            variant="outline"
+            className="mb-6 font-mono animate-fade-up"
+            style={{ animationDelay: "0ms" }}
+          >
             Week 1 · Research &amp; Synthesis
           </Badge>
-          <h1 className="text-4xl md:text-5xl font-semibold tracking-tight leading-[1.1] mb-6 max-w-3xl">
+          <h1
+            className="text-4xl md:text-5xl font-semibold tracking-tight leading-[1.1] mb-6 max-w-3xl animate-fade-up"
+            style={{ animationDelay: "80ms" }}
+          >
             動筆之前，
             <br />
             <span className="text-primary">我花了一週找答案。</span>
           </h1>
-          <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl">
+          <p
+            className="text-lg text-muted-foreground leading-relaxed max-w-2xl animate-fade-up"
+            style={{ animationDelay: "180ms" }}
+          >
             五個設計原則不是拍腦袋想出來的。
             它們從 5 位使用者的訪談、3 個競品的拆解、
             和 12 篇 agentic AI 文獻裡慢慢長出來。

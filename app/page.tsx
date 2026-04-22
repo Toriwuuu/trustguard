@@ -120,6 +120,33 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Before / After CTA band */}
+        <section className="py-10">
+          <Link
+            href="/compare"
+            className="group block rounded-2xl border border-border bg-card p-6 md:p-8 hover:border-primary/40 hover:bg-accent/30 transition-all"
+          >
+            <div className="flex flex-wrap items-start justify-between gap-6">
+              <div className="max-w-2xl">
+                <p className="text-xs font-mono uppercase tracking-wider text-primary mb-2">
+                  Before / After · Design Rationale
+                </p>
+                <h3 className="text-xl md:text-2xl font-semibold tracking-tight mb-2">
+                  同樣的情境，兩種 UX 決定
+                </h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  把 TrustGuard 放到「典型錢包介面」旁邊 —— 三組具體對比，
+                  每組背後都有一個可被挑戰的設計決定。
+                </p>
+              </div>
+              <div className="inline-flex items-center gap-1 text-sm font-medium text-muted-foreground group-hover:text-primary transition-colors">
+                查看三組對比
+                <ArrowRight className="size-4 group-hover:translate-x-0.5 transition-transform" />
+              </div>
+            </div>
+          </Link>
+        </section>
+
         {/* Five Principles */}
         <section className="py-16 border-t border-border">
           <h2 className="text-3xl font-semibold tracking-tight mb-2">
@@ -182,8 +209,10 @@ export default function Home() {
             <ProgressItem day="Day 11" task="核心元件 ②（PanicButton · TraceTimeline）" done />
             <ProgressItem day="Day 12-13" task="三大場景組裝（A / B / C）" done />
             <ProgressItem day="Day 14" task="首頁完成 + 完整串連" done />
-            <ProgressItem day="Day 15" task="動畫打磨（entrance stagger · Panic slide-down · Confidence fill）" done current />
-            <ProgressItem day="Later" task="Living Spec 升級（設計決策文件化）" />
+            <ProgressItem day="Day 15" task="動畫打磨（entrance stagger · Panic slide-down · Confidence fill）" done />
+            <ProgressItem day="Day 16" task="Living Spec 升級 · README 重寫" done />
+            <ProgressItem day="Day 17" task="Before / After 對比頁（三組設計決策對照）" done current />
+            <ProgressItem day="Later" task="OG image · 反思頁 · 無障礙細節" />
           </div>
         </section>
 

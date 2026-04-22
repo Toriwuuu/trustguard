@@ -52,6 +52,7 @@ TrustGuard 圍繞這個洞察展開設計 — 針對 AI Agent 可能進入的三
 
 - `/` · 首頁（Hero + 三情境導覽 + 原則）
 - `/research` · Week 1 UX 研究過程
+- `/compare` · Before / After · 三組對比展示設計決策
 - `/design-system` · Living Spec · Tokens、元件庫、每個決策的「Why」
 - `/dashboard` · Scenario A · Happy Path
 - `/dashboard/low-confidence` · Scenario B

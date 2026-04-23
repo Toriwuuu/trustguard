@@ -1,5 +1,8 @@
 import { ImageResponse } from "next/og";
 
+// Static export 要明確宣告（output: "export" 模式下不能有 dynamic route）
+export const dynamic = "force-static";
+
 export const alt = "TrustGuard — A UX case study on making AI agents trustworthy";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";

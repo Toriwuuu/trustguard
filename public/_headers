@@ -1,0 +1,11 @@
+# Cloudflare Pages 自訂 response headers
+# https://developers.cloudflare.com/pages/configuration/headers/
+
+# OG image 檔名沒有副檔名，手動指定 MIME type 給社群平台抓圖
+/opengraph-image
+  Content-Type: image/png
+  Cache-Control: public, max-age=31536000, immutable
+
+# 靜態資源長效快取
+/_next/static/*
+  Cache-Control: public, max-age=31536000, immutable

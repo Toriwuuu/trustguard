@@ -1,0 +1,22 @@
+<svg width="400" height="240" viewBox="0 0 400 240" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="240" fill="oklch(0.145 0.005 50)"/>
+
+  <!-- Subtle background noise lines (threat approaching) -->
+  <g stroke-linecap="round">
+    <line x1="40" y1="40" x2="220" y2="100" stroke="oklch(0.4 0.01 60)" stroke-width="1" opacity="0.2"/>
+    <line x1="20" y1="120" x2="230" y2="120" stroke="oklch(0.4 0.01 60)" stroke-width="1" opacity="0.2"/>
+    <line x1="40" y1="200" x2="220" y2="140" stroke="oklch(0.4 0.01 60)" stroke-width="1" opacity="0.2"/>
+
+    <!-- Threat lines being intercepted (stop at shield) -->
+    <line x1="220" y1="100" x2="287" y2="118" stroke="oklch(0.63 0.27 25)" stroke-width="1.2"/>
+    <line x1="230" y1="120" x2="287" y2="120" stroke="oklch(0.63 0.27 25)" stroke-width="1.2"/>
+    <line x1="220" y1="140" x2="287" y2="122" stroke="oklch(0.63 0.27 25)" stroke-width="1.2"/>
+  </g>
+
+  <!-- Shield (angular bracket) -->
+  <path d="M310 70 L290 120 L310 170" fill="none" stroke="oklch(0.63 0.27 25)" stroke-width="2" stroke-linejoin="round"/>
+
+  <!-- Impact point pulse -->
+  <circle cx="290" cy="120" r="2" fill="oklch(0.63 0.27 25)"/>
+  <circle cx="290" cy="120" r="8" stroke="oklch(0.63 0.27 25)" stroke-width="0.5" stroke-opacity="0.3" fill="none"/>
+</svg>

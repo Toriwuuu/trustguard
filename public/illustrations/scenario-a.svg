@@ -1,0 +1,40 @@
+<svg width="400" height="240" viewBox="0 0 400 240" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="sunGradient-a" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="oklch(0.72 0.17 50)" stop-opacity="0.4" />
+      <stop offset="100%" stop-color="oklch(0.72 0.17 50)" stop-opacity="0" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="400" height="240" fill="oklch(0.145 0.005 50)"/>
+
+  <!-- Subtle Grid -->
+  <g fill="white" fill-opacity="0.03">
+    <circle cx="100" cy="60" r="1"/>
+    <circle cx="200" cy="60" r="1"/>
+    <circle cx="300" cy="60" r="1"/>
+    <circle cx="100" cy="120" r="1"/>
+    <circle cx="200" cy="120" r="1"/>
+    <circle cx="300" cy="120" r="1"/>
+    <circle cx="100" cy="180" r="1"/>
+    <circle cx="200" cy="180" r="1"/>
+    <circle cx="300" cy="180" r="1"/>
+  </g>
+
+  <!-- Horizon -->
+  <line x1="60" y1="180" x2="340" y2="180" stroke="white" stroke-opacity="0.08" stroke-width="1"/>
+
+  <!-- Dawn Sun Glow -->
+  <path d="M 160 180 A 40 40 0 0 1 240 180" fill="url(#sunGradient-a)"/>
+
+  <!-- Geometric Sun Core -->
+  <path d="M 180 180 A 20 20 0 0 1 220 180" fill="oklch(0.72 0.17 50)" fill-opacity="0.1"/>
+
+  <!-- Ascending Trend Path -->
+  <path d="M 80 195 L 140 185 L 200 165 L 260 170 L 320 140" fill="none" stroke="oklch(0.75 0.15 155)" stroke-width="1.2" stroke-opacity="0.5" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Minimalist Success Point -->
+  <circle cx="320" cy="140" r="2.5" fill="oklch(0.75 0.15 155)" fill-opacity="0.8"/>
+  <circle cx="320" cy="140" r="6" stroke="oklch(0.75 0.15 155)" stroke-width="0.5" stroke-opacity="0.2" fill="none"/>
+</svg>

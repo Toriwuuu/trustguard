@@ -3,16 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { SiteTopBar } from "@/components/layout/SiteTopBar";
 import { Aurora } from "@/components/ui/aurora";
-import {
-  ArrowRight,
-  ShieldAlert,
-  Sparkles,
-  Eye,
-  Languages,
-  Handshake,
-  FileSearch,
-  SlidersHorizontal,
-} from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 export default function Home() {
   return (
@@ -96,7 +87,7 @@ export default function Home() {
               title="Happy Path"
               desc="AI 在凌晨自動完成再平衡，使用者醒來查看成績單。"
               accent="success"
-              icon={<Sparkles className="size-5" />}
+              thumb="/illustrations/scenario-a.svg"
               delay={0}
             />
             <ScenarioCard
@@ -106,7 +97,7 @@ export default function Home() {
               title="Low Confidence"
               desc="市場異常、AI 信心下降，主動徵詢使用者意見。"
               accent="warning"
-              icon={<Eye className="size-5" />}
+              thumb="/illustrations/scenario-b.svg"
               delay={100}
             />
             <ScenarioCard
@@ -116,7 +107,7 @@ export default function Home() {
               title="Panic"
               desc="偵測可疑活動，使用者按下緊急制動，所有授權即刻撤銷。"
               accent="panic"
-              icon={<ShieldAlert className="size-5" />}
+              thumb="/illustrations/scenario-c.svg"
               delay={200}
             />
           </div>
@@ -165,31 +156,26 @@ export default function Home() {
                 number: "01",
                 title: "翻譯，不是展示",
                 desc: "不把 API 回來的數字原封不動倒給使用者。把「3.42 USDC」翻譯成「過去 24 小時的質押收益」。",
-                icon: <Languages className="size-5" />,
               },
               {
                 number: "02",
                 title: "Panic 色是神聖的",
                 desc: "大面積紅色只為「必須立刻反應」的時刻保留。一旦濫用，使用者的警覺會鈍化。",
-                icon: <ShieldAlert className="size-5" />,
               },
               {
                 number: "03",
                 title: "夥伴關係，不是代理",
                 desc: "AI 不該假裝無所不知。信心度低就主動求助，把決策權還給使用者。",
-                icon: <Handshake className="size-5" />,
               },
               {
                 number: "04",
                 title: "證據優先於承諾",
                 desc: "不說「相信我」。說「這是我看到的資料、我的推理步驟、我做了什麼」。每一步都可追溯。",
-                icon: <FileSearch className="size-5" />,
               },
               {
                 number: "05",
                 title: "透明度要校準",
                 desc: "日常不需要攤開所有日誌，緊急時要把所有細節擺到眼前。透明度隨情境調整。",
-                icon: <SlidersHorizontal className="size-5" />,
               },
             ].map((p, i) => (
               <Principle key={p.number} {...p} delay={i * 80} />
@@ -249,7 +235,7 @@ function ScenarioCard({
   title,
   desc,
   accent,
-  icon,
+  thumb,
   delay = 0,
 }: {
   href: string;
@@ -258,41 +244,54 @@ function ScenarioCard({
   title: string;
   desc: string;
   accent: "success" | "warning" | "panic";
-  icon: React.ReactNode;
+  thumb: string;
   delay?: number;
 }) {
-  const accentClasses = {
-    success: "border-success/30 bg-success/5 text-success",
-    warning: "border-warning/30 bg-warning/5 text-warning",
-    panic: "border-panic/30 bg-panic/5 text-panic",
+  const accentColor = {
+    success: "var(--success)",
+    warning: "var(--warning)",
+    panic: "var(--panic)",
   }[accent];
 
   return (
     <Link
       href={href}
-      className="group block rounded-xl border border-border bg-card p-6 hover:border-primary/40 hover:-translate-y-0.5 hover:bg-accent/30 transition-all duration-300 animate-fade-up"
+      className="group block rounded-xl border border-border bg-card overflow-hidden hover:-translate-y-0.5 transition-all duration-300 animate-fade-up"
       style={{ animationDelay: `${delay}ms` }}
     >
-      <div className="flex items-center justify-between mb-4">
-        <div
-          className={`size-10 rounded-lg border grid place-items-center ${accentClasses}`}
+      {/* Thumbnail — 5:3 aspect, bg 已內建於 SVG */}
+      <div
+        className="relative aspect-[5/3] overflow-hidden border-b border-border/60 bg-cover bg-center"
+        style={{ backgroundImage: `url(${thumb})` }}
+      >
+        {/* Accent 色點：和 index 呼應，提示 tone */}
+        <span
+          aria-hidden="true"
+          className="absolute top-3 left-3 size-1.5 rounded-full"
+          style={{ backgroundColor: accentColor, opacity: 0.9 }}
+        />
+        <span
+          className="absolute top-3 right-3 text-[10px] font-mono uppercase tracking-[0.18em] text-foreground/50"
         >
-          {icon}
-        </div>
-        <span className="text-4xl font-mono text-muted-foreground/30">
-          {index}
+          Scenario {index}
         </span>
       </div>
-      <p className="text-xs text-muted-foreground mb-1 uppercase tracking-wider">
-        {status}
-      </p>
-      <h3 className="text-lg font-semibold mb-2">{title}</h3>
-      <p className="text-sm text-muted-foreground leading-relaxed mb-4">
-        {desc}
-      </p>
-      <div className="text-xs font-medium text-muted-foreground group-hover:text-primary transition-colors inline-flex items-center gap-1">
-        進入場景
-        <ArrowRight className="size-3 group-hover:translate-x-0.5 transition-transform" />
+
+      {/* Body */}
+      <div className="p-5">
+        <p className="text-[10px] font-mono uppercase tracking-[0.18em] text-muted-foreground mb-2">
+          {status}
+        </p>
+        <h3 className="text-lg font-semibold mb-2 tracking-tight group-hover:text-primary transition-colors">
+          {title}
+        </h3>
+        <p className="text-sm text-muted-foreground leading-relaxed mb-4">
+          {desc}
+        </p>
+        <div className="text-xs font-medium text-muted-foreground group-hover:text-primary transition-colors inline-flex items-center gap-1">
+          進入場景
+          <ArrowRight className="size-3 group-hover:translate-x-0.5 transition-transform" />
+        </div>
       </div>
     </Link>
   );
@@ -302,13 +301,11 @@ function Principle({
   number,
   title,
   desc,
-  icon,
   delay = 0,
 }: {
   number: string;
   title: string;
   desc: string;
-  icon: React.ReactNode;
   delay?: number;
 }) {
   return (
@@ -316,22 +313,28 @@ function Principle({
       className="rounded-xl border border-border bg-card p-6 animate-fade-up hover:border-primary/30 transition-colors"
       style={{ animationDelay: `${delay}ms` }}
     >
-      <div className="flex items-start gap-4 mb-3">
-        <div
-          className="size-10 rounded-lg grid place-items-center shrink-0"
-          style={{
-            backgroundColor:
-              "color-mix(in oklch, var(--primary) 15%, transparent)",
-            color: "var(--primary)",
-          }}
+      {/* Editorial mark：大字號碼 + 小 label */}
+      <div className="flex items-baseline gap-2 mb-5">
+        <span
+          className="text-2xl font-mono leading-none"
+          style={{ color: "var(--primary)" }}
         >
-          {icon}
-        </div>
-        <span className="text-2xl font-mono text-muted-foreground/40 ml-auto leading-none">
           {number}
         </span>
+        <span className="text-[10px] font-mono uppercase tracking-[0.18em] text-muted-foreground">
+          Principle
+        </span>
+        {/* 細線延伸 — 讓編號跟 label 之後有呼吸空間 */}
+        <span
+          aria-hidden="true"
+          className="flex-1 h-px ml-1"
+          style={{
+            backgroundColor:
+              "color-mix(in oklch, var(--border) 100%, transparent)",
+          }}
+        />
       </div>
-      <h3 className="text-base font-semibold mb-2">{title}</h3>
+      <h3 className="text-lg font-semibold mb-2 tracking-tight">{title}</h3>
       <p className="text-sm text-muted-foreground leading-relaxed">{desc}</p>
     </div>
   );

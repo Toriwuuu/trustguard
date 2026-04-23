@@ -104,7 +104,7 @@ export default function DesignSystemPage() {
               <p className="text-base leading-relaxed italic text-foreground/90">
                 &ldquo;使用者最害怕的不是 AI 做錯選擇，
                 <br />
-                而是自己沒有機會知道、理解、或阻止。&rdquo;
+                而是自己沒有機會理解或阻止。&rdquo;
               </p>
               <p className="mt-3 text-sm text-muted-foreground font-mono">
                 — 使用者洞察，Week 1

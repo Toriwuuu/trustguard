@@ -33,7 +33,7 @@ export default function ComparePage() {
       <Aurora intensity="subtle" />
       <SiteTopBar />
 
-      <main className="max-w-6xl mx-auto px-4 md:px-8">
+      <main id="main-content" className="max-w-6xl mx-auto px-4 md:px-8">
         {/* Hero */}
         <section className="pt-24 pb-12">
           <Badge
@@ -148,6 +148,9 @@ export default function ComparePage() {
             </Link>
             <Link href="/research" className="hover:text-foreground transition-colors">
               Research
+            </Link>
+            <Link href="/reflection" className="hover:text-foreground transition-colors">
+              Reflection
             </Link>
             <Link href="/design-system" className="hover:text-foreground transition-colors">
               Design System

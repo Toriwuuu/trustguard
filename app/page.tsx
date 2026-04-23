@@ -11,7 +11,7 @@ export default function Home() {
       <Aurora intensity="normal" />
       <SiteTopBar />
 
-      <main className="max-w-5xl mx-auto px-4 md:px-8">
+      <main id="main-content" className="max-w-5xl mx-auto px-4 md:px-8">
         {/* Hero */}
         <section className="pt-24 pb-16">
           <Badge
@@ -199,8 +199,10 @@ export default function Home() {
             <ProgressItem day="Day 14" task="首頁完成 + 完整串連" done />
             <ProgressItem day="Day 15" task="動畫打磨（entrance stagger · Panic slide-down · Confidence fill）" done />
             <ProgressItem day="Day 16" task="Living Spec 升級 · README 重寫" done />
-            <ProgressItem day="Day 17" task="Before / After 對比頁（三組設計決策對照）" done current />
-            <ProgressItem day="Later" task="OG image · 反思頁 · 無障礙細節" />
+            <ProgressItem day="Day 17" task="Before / After 對比頁（三組設計決策對照）" done />
+            <ProgressItem day="Day 18" task="無障礙細節（focus-visible · skip link · panic 焦點色）" done />
+            <ProgressItem day="Day 19" task="OG image（1200×630 · 英文版，避開中文字體載入）" done />
+            <ProgressItem day="Day 20" task="反思頁（trade-offs · 學到什麼 · 下次會改什麼）" done current />
           </div>
         </section>
 
@@ -220,6 +222,9 @@ export default function Home() {
             </Link>
             <Link href="/design-system" className="hover:text-foreground transition-colors">
               Design System
+            </Link>
+            <Link href="/reflection" className="hover:text-foreground transition-colors">
+              Reflection
             </Link>
           </nav>
         </footer>

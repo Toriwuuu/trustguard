@@ -21,8 +21,9 @@ type NavItem = {
 const NAV: NavItem[] = [
   { href: "/research",      label: "Research",      match: (p) => p === "/research" },
   { href: "/compare",       label: "Compare",       match: (p) => p === "/compare" },
-  { href: "/design-system", label: "Design System", shortLabel: "Design", match: (p) => p === "/design-system" },
-  { href: "/dashboard",     label: "Dashboard",     match: (p) => p.startsWith("/dashboard") },
+  { href: "/dashboard",     label: "Dashboard",     shortLabel: "Demo",    match: (p) => p.startsWith("/dashboard") },
+  { href: "/reflection",    label: "Reflection",    shortLabel: "Reflect", match: (p) => p === "/reflection" },
+  { href: "/design-system", label: "Design System", shortLabel: "Design",  match: (p) => p === "/design-system" },
 ];
 
 export function SiteTopBar({ sticky = true }: { sticky?: boolean }) {
@@ -34,7 +35,7 @@ export function SiteTopBar({ sticky = true }: { sticky?: boolean }) {
         sticky ? "sticky top-0 z-50" : ""
       } border-b border-border bg-background/80 backdrop-blur-lg`}
     >
-      <div className="max-w-7xl mx-auto px-4 md:px-8 h-14 flex items-center justify-between gap-3 sm:gap-4">
+      <div className="max-w-7xl mx-auto px-4 md:px-8 h-14 flex items-center justify-between gap-2 sm:gap-4">
         <Link
           href="/"
           className="flex items-center gap-2 font-semibold shrink-0"
@@ -46,7 +47,7 @@ export function SiteTopBar({ sticky = true }: { sticky?: boolean }) {
           <span className="hidden sm:inline">TrustGuard</span>
         </Link>
 
-        <nav className="flex items-center gap-3 sm:gap-6 text-sm whitespace-nowrap">
+        <nav className="flex items-center gap-2.5 sm:gap-6 text-xs sm:text-sm whitespace-nowrap">
           {NAV.map((item) => {
             const isActive = item.match(pathname);
             return (

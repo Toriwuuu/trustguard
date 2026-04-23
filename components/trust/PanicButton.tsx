@@ -154,7 +154,7 @@ export function PanicButton({
       aria-label={label}
       className={[
         "relative overflow-hidden inline-flex items-center justify-center rounded-xl border-2 font-semibold select-none",
-        "transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+        "transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--panic)]",
         "disabled:opacity-60 disabled:cursor-not-allowed",
         idlePulseClass,
         s.h,

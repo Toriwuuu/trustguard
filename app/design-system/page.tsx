@@ -71,7 +71,7 @@ export default function DesignSystemPage() {
         </aside>
 
         {/* Main */}
-        <main className="flex-1 min-w-0 pt-16 pb-32 space-y-24">
+        <main id="main-content" className="flex-1 min-w-0 pt-16 pb-32 space-y-24">
           {/* Hero */}
           <section>
             <Badge

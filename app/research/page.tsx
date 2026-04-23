@@ -6,7 +6,6 @@ import {
   LayoutGrid,
   FileText,
   Route,
-  Quote,
   Check,
   X,
   Languages,
@@ -38,7 +37,7 @@ export default function ResearchPage() {
       <Aurora intensity="subtle" />
       <SiteTopBar />
 
-      <main className="max-w-5xl mx-auto px-4 md:px-8">
+      <main id="main-content" className="max-w-5xl mx-auto px-4 md:px-8">
         {/* Hero */}
         <section className="pt-24 pb-16">
           <Badge
@@ -546,10 +545,14 @@ function InterviewQuote({
       style={{ borderLeftColor: "var(--primary)" }}
     >
       <div className="flex items-start gap-3">
-        <Quote
-          className="size-5 shrink-0 mt-0.5"
-          style={{ color: "var(--primary)" }}
-        />
+        {/* 排版本身即是裝飾 — 大字序列 quote mark 取代 icon */}
+        <span
+          aria-hidden="true"
+          className="font-serif text-5xl leading-[0.7] shrink-0 select-none"
+          style={{ color: "var(--primary)", opacity: 0.7 }}
+        >
+          &ldquo;
+        </span>
         <div className="flex-1 min-w-0">
           <p className="text-base font-medium leading-relaxed mb-3">
             「{quote}」

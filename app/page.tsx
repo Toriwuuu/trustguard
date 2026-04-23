@@ -59,7 +59,7 @@ export default function Home() {
 
         {/* Divider pullquote */}
         <section className="py-16 border-t border-b border-border my-8">
-          <blockquote className="max-w-3xl">
+          <blockquote className="max-w-4xl">
             <p className="text-2xl leading-relaxed font-medium">
               &ldquo;使用者最害怕的不是 AI 做錯選擇，而是自己
               <span className="text-primary">沒有機會知道、理解、或阻止</span>。&rdquo;

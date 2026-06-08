@@ -1,3 +1,5 @@
+"use client";
+
 /* ============================================
    Aurora · Hero 背景環境光暈
    -------------------------------------------
@@ -9,13 +11,25 @@
      · 容器高度 1400px，已足夠覆蓋 hero 並溢入下一個 section
      · overflow 交由父層 `overflow-x-clip` 處理水平捲動
 
+   parallax（選用）：
+     · 開啟後，三層光暈會隨捲動以「不同速度」微幅上移，做出景深
+     · 純背景裝飾，位移量克制（≤12%），不搶內容
+     · 用 GSAP ScrollTrigger scrub；尊重 prefers-reduced-motion
+
    使用方式：
      <div className="min-h-screen relative isolate overflow-x-clip">
-       <Aurora />
+       <Aurora parallax />        // 首頁：有 parallax
        <SiteTopBar />
        <main>...</main>
      </div>
    ============================================ */
+
+import { useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
+
+gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 type AuroraProps = {
   /**
@@ -24,16 +38,48 @@ type AuroraProps = {
    * - subtle  內頁 hero 用（不搶戲）
    */
   intensity?: "normal" | "subtle";
+  /** 是否啟用捲動視差，預設關閉（內頁靜態） */
+  parallax?: boolean;
 };
 
-export function Aurora({ intensity = "normal" }: AuroraProps) {
+export function Aurora({ intensity = "normal", parallax = false }: AuroraProps) {
   const mix =
     intensity === "subtle"
       ? { a: 10, b: 6, c: 7 }
       : { a: 18, b: 10, c: 13 };
 
+  const ref = useRef<HTMLDivElement>(null);
+
+  useGSAP(
+    () => {
+      if (!parallax) return;
+      const el = ref.current;
+      if (!el) return;
+      const layers = gsap.utils.toArray<HTMLElement>(el.children);
+
+      const mm = gsap.matchMedia();
+      mm.add("(prefers-reduced-motion: no-preference)", () => {
+        // 三層各自不同速度 → 景深；數字越大移得越多（越「近」）
+        gsap.to(layers, {
+          yPercent: (i) => [-6, -12, -9][i] ?? -8,
+          ease: "none",
+          scrollTrigger: {
+            trigger: el,
+            start: "top top",
+            end: "bottom top",
+            scrub: true,
+          },
+        });
+      });
+
+      return () => mm.revert();
+    },
+    { scope: ref, dependencies: [parallax] },
+  );
+
   return (
     <div
+      ref={ref}
       aria-hidden="true"
       className="pointer-events-none absolute inset-x-0 top-0 h-[1400px] -z-10"
       style={{

@@ -3,71 +3,63 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { SiteTopBar } from "@/components/layout/SiteTopBar";
 import { Aurora } from "@/components/ui/aurora";
+import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { ArrowRight } from "lucide-react";
 
 export default function Home() {
   return (
     <div className="min-h-screen relative isolate overflow-x-clip">
-      <Aurora intensity="normal" />
+      <Aurora intensity="normal" parallax />
       <SiteTopBar />
 
       <main id="main-content" className="max-w-5xl mx-auto px-4 md:px-8">
         {/* Hero */}
         <section className="pt-24 pb-16">
-          <Badge
-            variant="outline"
-            className="mb-6 font-mono animate-fade-up"
-            style={{ animationDelay: "0ms" }}
-          >
-            Web3 × Agentic AI · Portfolio Case Study
-          </Badge>
+          <ScrollReveal stagger={0.1}>
+            <Badge variant="outline" className="mb-6 font-mono">
+              Web3 × Agentic AI · Portfolio Case Study
+            </Badge>
 
-          <h1
-            className="text-4xl sm:text-5xl md:text-6xl font-semibold tracking-tight leading-[1.05] mb-6 max-w-3xl animate-fade-up"
-            style={{ animationDelay: "80ms" }}
-          >
-            AI 代理人的
-            <br />
-            <span className="text-primary">透明化駕駛艙</span>
-          </h1>
+            <h1 className="text-5xl sm:text-6xl md:text-7xl font-semibold tracking-[-0.03em] leading-[1.0] mb-6 max-w-3xl">
+              AI 代理人的
+              <br />
+              <span className="text-primary">透明化駕駛艙</span>
+            </h1>
 
-          <p
-            className="text-xl text-muted-foreground leading-relaxed max-w-2xl mb-8 animate-fade-up"
-            style={{ animationDelay: "180ms" }}
-          >
-            當 AI 從「助理」變成「代理人」，UX 面臨一個新命題——
-            如何讓使用者既能放手，又能隨時拉回控制權？
-          </p>
+            <p className="text-lg text-muted-foreground leading-relaxed max-w-xl mb-8">
+              當 AI 從「助理」變成「代理人」，UX 面臨一個新命題——
+              如何讓使用者既能放手，又能隨時拉回控制權？
+            </p>
 
-          <div
-            className="flex flex-wrap gap-3 animate-fade-up"
-            style={{ animationDelay: "280ms" }}
-          >
-            <Link href="/dashboard">
-              <Button size="lg">
-                進入 Dashboard
-                <ArrowRight className="size-4 ml-1" />
-              </Button>
-            </Link>
-            <Link href="/design-system">
-              <Button variant="outline" size="lg">
-                查看 Design System
-              </Button>
-            </Link>
-          </div>
+            <div className="flex flex-wrap gap-3">
+              <Link href="/dashboard">
+                <Button size="lg" className="active:scale-[0.97] transition-transform">
+                  進入 Dashboard
+                  <ArrowRight className="size-4 ml-1" />
+                </Button>
+              </Link>
+              <Link href="/design-system">
+                <Button variant="outline" size="lg" className="active:scale-[0.97] transition-transform">
+                  查看 Design System
+                </Button>
+              </Link>
+            </div>
+          </ScrollReveal>
         </section>
 
         {/* Divider pullquote */}
         <section className="py-16 border-t border-b border-border my-8">
-          <blockquote className="max-w-4xl">
-            <p className="text-2xl leading-relaxed font-medium">
-              &ldquo;使用者最害怕的不是 AI 做錯選擇，而是自己
-              <span className="text-primary">沒有機會知道、理解、或阻止</span>。&rdquo;
-            </p>
-            <footer className="mt-4 text-sm text-muted-foreground font-mono">
-              — 使用者研究洞察 · Week 1
-            </footer>
-          </blockquote>
+          <ScrollReveal>
+            <blockquote className="max-w-4xl">
+              <p className="text-2xl leading-relaxed font-medium">
+                &ldquo;使用者最害怕的不是 AI 做錯選擇，而是自己
+                <span className="text-primary">沒有機會知道、理解、或阻止</span>。&rdquo;
+              </p>
+              <footer className="mt-4 text-sm text-muted-foreground font-mono">
+                — 使用者研究洞察 · Week 1
+              </footer>
+            </blockquote>
+          </ScrollReveal>
         </section>
 
         {/* Scenarios preview */}
@@ -79,46 +71,48 @@ export default function Home() {
             TrustGuard 圍繞 AI Agent 可能進入的三種狀態展開設計。
           </p>
 
-          <div className="grid md:grid-cols-3 gap-4">
-            <ScenarioCard
-              href="/dashboard"
-              index="A"
-              status="放心"
-              title="Happy Path"
-              desc="AI 在凌晨自動完成再平衡，使用者醒來查看成績單。"
-              accent="success"
-              thumb="/illustrations/scenario-a.svg"
-              delay={0}
-            />
-            <ScenarioCard
-              href="/dashboard/low-confidence"
-              index="B"
-              status="需介入"
-              title="Low Confidence"
-              desc="市場異常、AI 信心下降，主動徵詢使用者意見。"
-              accent="warning"
-              thumb="/illustrations/scenario-b.svg"
-              delay={100}
-            />
-            <ScenarioCard
-              href="/dashboard/panic"
-              index="C"
-              status="緊急"
-              title="Panic"
-              desc="偵測可疑活動，使用者按下緊急制動，所有授權即刻撤銷。"
-              accent="panic"
-              thumb="/illustrations/scenario-c.svg"
-              delay={200}
-            />
-          </div>
+          <ScrollReveal as="div" stagger={0.12}>
+            <div className="grid md:grid-cols-[1fr_340px] gap-4">
+              {/* Scenario A：主角卡，完整高度 */}
+              <ScenarioCard
+                href="/dashboard"
+                index="A"
+                status="放心"
+                title="Happy Path"
+                desc="AI 在凌晨自動完成再平衡，使用者醒來查看成績單——一切正常，帳戶微幅成長。"
+                accent="success"
+                featured
+              />
+              {/* B + C 垂直疊放 */}
+              <div className="flex flex-col gap-4">
+                <ScenarioCard
+                  href="/dashboard/low-confidence"
+                  index="B"
+                  status="需介入"
+                  title="Low Confidence"
+                  desc="市場異常、AI 信心下降，主動徵詢使用者意見。"
+                  accent="warning"
+                />
+                <ScenarioCard
+                  href="/dashboard/panic"
+                  index="C"
+                  status="緊急"
+                  title="Panic"
+                  desc="偵測可疑活動，所有授權即刻撤銷。"
+                  accent="panic"
+                />
+              </div>
+            </div>
+          </ScrollReveal>
         </section>
 
         {/* Before / After CTA band */}
         <section className="py-10">
-          <Link
-            href="/compare"
-            className="group block rounded-2xl border border-border bg-card p-6 md:p-8 hover:border-primary/40 hover:bg-accent/30 transition-all"
-          >
+          <ScrollReveal>
+            <Link
+              href="/compare"
+              className="group block rounded-2xl border border-border bg-card p-6 md:p-8 hover:border-primary/40 hover:bg-accent/30 active:scale-[0.99] transition-all"
+            >
             <div className="flex flex-wrap items-start justify-between gap-6">
               <div className="max-w-2xl">
                 <p className="text-xs font-mono uppercase tracking-wider text-primary mb-2">
@@ -137,7 +131,8 @@ export default function Home() {
                 <ArrowRight className="size-4 group-hover:translate-x-0.5 transition-transform" />
               </div>
             </div>
-          </Link>
+            </Link>
+          </ScrollReveal>
         </section>
 
         {/* Five Principles */}
@@ -150,7 +145,11 @@ export default function Home() {
             它們不是規範，而是設計爭議時的仲裁。
           </p>
 
-          <div className="grid md:grid-cols-2 gap-4">
+          <ScrollReveal
+            as="div"
+            className="grid md:grid-cols-2 gap-4"
+            stagger={0.08}
+          >
             {[
               {
                 number: "01",
@@ -177,10 +176,10 @@ export default function Home() {
                 title: "透明度要校準",
                 desc: "日常不需要攤開所有日誌，緊急時要把所有細節擺到眼前。透明度隨情境調整。",
               },
-            ].map((p, i) => (
-              <Principle key={p.number} {...p} delay={i * 80} />
+            ].map((p) => (
+              <Principle key={p.number} {...p} />
             ))}
-          </div>
+          </ScrollReveal>
         </section>
 
         {/* Progress */}
@@ -189,7 +188,7 @@ export default function Home() {
             專案進度
           </h2>
 
-          <div className="space-y-2">
+          <ScrollReveal as="div" className="space-y-2" stagger={0.04}>
             <ProgressItem day="Week 1" task="UX Research（訪談 · 競品 · Journey Map）" done />
             <ProgressItem day="Day 8" task="Design Tokens 建立" done />
             <ProgressItem day="Day 9" task="Design System 展示頁" done />
@@ -203,7 +202,7 @@ export default function Home() {
             <ProgressItem day="Day 18" task="無障礙細節（focus-visible · skip link · panic 焦點色）" done />
             <ProgressItem day="Day 19" task="OG image（1200×630 · 英文版，避開中文字體載入）" done />
             <ProgressItem day="Day 20" task="反思頁（trade-offs · 學到什麼 · 下次會改什麼）" done current />
-          </div>
+          </ScrollReveal>
         </section>
 
         {/* Footer */}
@@ -240,8 +239,7 @@ function ScenarioCard({
   title,
   desc,
   accent,
-  thumb,
-  delay = 0,
+  featured = false,
 }: {
   href: string;
   index: string;
@@ -249,8 +247,7 @@ function ScenarioCard({
   title: string;
   desc: string;
   accent: "success" | "warning" | "panic";
-  thumb: string;
-  delay?: number;
+  featured?: boolean;
 }) {
   const accentColor = {
     success: "var(--success)",
@@ -258,39 +255,48 @@ function ScenarioCard({
     panic: "var(--panic)",
   }[accent];
 
+  const accentBg = {
+    success: "color-mix(in oklch, var(--success) 8%, transparent)",
+    warning: "color-mix(in oklch, var(--warning) 8%, transparent)",
+    panic: "color-mix(in oklch, var(--panic) 8%, transparent)",
+  }[accent];
+
   return (
     <Link
       href={href}
-      className="group block rounded-xl border border-border bg-card overflow-hidden hover:-translate-y-0.5 transition-all duration-300 animate-fade-up"
-      style={{ animationDelay: `${delay}ms` }}
+      className={`group flex flex-col rounded-xl border border-border bg-card overflow-hidden hover:-translate-y-0.5 active:scale-[0.99] transition-all duration-300 ${featured ? "h-full" : ""}`}
     >
-      {/* Thumbnail — 5:3 aspect, bg 已內建於 SVG */}
+      {/* 色塊 header — 取代空白縮圖 */}
       <div
-        className="relative aspect-[5/3] overflow-hidden border-b border-border/60 bg-cover bg-center"
-        style={{ backgroundImage: `url(${thumb})` }}
+        className={`relative overflow-hidden border-b border-border/50 ${featured ? "min-h-[160px]" : "min-h-[90px]"} flex items-end p-5`}
+        style={{ backgroundColor: accentBg }}
       >
-        {/* Accent 色點：和 index 呼應，提示 tone */}
+        {/* 大字號 index 作為裝飾 */}
         <span
           aria-hidden="true"
-          className="absolute top-3 left-3 size-1.5 rounded-full"
-          style={{ backgroundColor: accentColor, opacity: 0.9 }}
-        />
-        <span
-          className="absolute top-3 right-3 text-[10px] font-mono uppercase tracking-[0.18em] text-foreground/50"
+          className="absolute right-4 top-1/2 -translate-y-1/2 text-[80px] font-bold leading-none opacity-[0.07] select-none"
+          style={{ color: accentColor }}
         >
-          Scenario {index}
+          {index}
         </span>
+        <div className="relative flex items-center gap-2">
+          <span
+            aria-hidden="true"
+            className="size-2 rounded-full shrink-0"
+            style={{ backgroundColor: accentColor }}
+          />
+          <span className="text-[10px] font-mono uppercase tracking-[0.18em]" style={{ color: accentColor }}>
+            Scenario {index} · {status}
+          </span>
+        </div>
       </div>
 
       {/* Body */}
-      <div className="p-5">
-        <p className="text-[10px] font-mono uppercase tracking-[0.18em] text-muted-foreground mb-2">
-          {status}
-        </p>
-        <h3 className="text-lg font-semibold mb-2 tracking-tight group-hover:text-primary transition-colors">
+      <div className="p-5 flex flex-col flex-1">
+        <h3 className={`font-semibold mb-2 tracking-tight group-hover:text-primary transition-colors ${featured ? "text-xl" : "text-base"}`}>
           {title}
         </h3>
-        <p className="text-sm text-muted-foreground leading-relaxed mb-4">
+        <p className="text-sm text-muted-foreground leading-relaxed mb-4 flex-1">
           {desc}
         </p>
         <div className="text-xs font-medium text-muted-foreground group-hover:text-primary transition-colors inline-flex items-center gap-1">
@@ -306,40 +312,28 @@ function Principle({
   number,
   title,
   desc,
-  delay = 0,
 }: {
   number: string;
   title: string;
   desc: string;
-  delay?: number;
 }) {
   return (
-    <div
-      className="rounded-xl border border-border bg-card p-6 animate-fade-up hover:border-primary/30 transition-colors"
-      style={{ animationDelay: `${delay}ms` }}
-    >
-      {/* Editorial mark：大字號碼 + 小 label */}
-      <div className="flex items-baseline gap-2 mb-5">
+    <div className="group rounded-xl p-6 hover:bg-card/80 transition-colors cursor-default">
+      {/* 號碼 + 分隔線 */}
+      <div className="flex items-center gap-3 mb-5">
         <span
-          className="text-2xl font-mono leading-none"
+          className="text-[13px] font-mono font-semibold tabular-nums"
           style={{ color: "var(--primary)" }}
         >
           {number}
         </span>
-        <span className="text-[10px] font-mono uppercase tracking-[0.18em] text-muted-foreground">
-          Principle
-        </span>
-        {/* 細線延伸 — 讓編號跟 label 之後有呼吸空間 */}
         <span
           aria-hidden="true"
-          className="flex-1 h-px ml-1"
-          style={{
-            backgroundColor:
-              "color-mix(in oklch, var(--border) 100%, transparent)",
-          }}
+          className="flex-1 h-px"
+          style={{ backgroundColor: "var(--border)" }}
         />
       </div>
-      <h3 className="text-lg font-semibold mb-2 tracking-tight">{title}</h3>
+      <h3 className="text-base font-semibold mb-2 tracking-tight">{title}</h3>
       <p className="text-sm text-muted-foreground leading-relaxed">{desc}</p>
     </div>
   );

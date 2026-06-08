@@ -14,6 +14,7 @@ import { Button } from "@/components/ui/button";
 import { SiteTopBar } from "@/components/layout/SiteTopBar";
 import { Aurora } from "@/components/ui/aurora";
 import { Reveal } from "@/components/ui/reveal";
+import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { ConfidenceScore } from "@/components/trust/ConfidenceScore";
 import {
   ArrowRight,
@@ -36,32 +37,24 @@ export default function ComparePage() {
       <main id="main-content" className="max-w-6xl mx-auto px-4 md:px-8">
         {/* Hero */}
         <section className="pt-24 pb-12">
-          <Badge
-            variant="outline"
-            className="mb-6 font-mono animate-fade-up"
-            style={{ animationDelay: "0ms" }}
-          >
-            Before / After · Design Rationale
-          </Badge>
+          <ScrollReveal stagger={0.1}>
+            <Badge variant="outline" className="mb-6 font-mono">
+              Before / After · Design Rationale
+            </Badge>
 
-          <h1
-            className="text-4xl sm:text-5xl md:text-6xl font-semibold tracking-tight leading-[1.05] mb-6 max-w-3xl animate-fade-up"
-            style={{ animationDelay: "80ms" }}
-          >
-            同樣的情境，
-            <br />
-            <span className="text-primary">兩種 UX 決定</span>
-          </h1>
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-semibold tracking-tight leading-[1.05] mb-6 max-w-3xl">
+              同樣的情境，
+              <br />
+              <span className="text-primary">兩種 UX 決定</span>
+            </h1>
 
-          <p
-            className="text-lg text-muted-foreground leading-relaxed max-w-2xl animate-fade-up"
-            style={{ animationDelay: "180ms" }}
-          >
-            當 AI 代理人要做出影響資產的動作時，傳統錢包給使用者的是
-            <span className="text-foreground"> 一顆 Approve 按鈕</span>。
-            TrustGuard 把同一個決策點展開成
-            <span className="text-foreground"> 翻譯、證據、與對話</span>。
-          </p>
+            <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl">
+              當 AI 代理人要做出影響資產的動作時，傳統錢包給使用者的是
+              <span className="text-foreground"> 一顆 Approve 按鈕</span>。
+              TrustGuard 把同一個決策點展開成
+              <span className="text-foreground"> 翻譯、證據、與對話</span>。
+            </p>
+          </ScrollReveal>
         </section>
 
         {/* Comparison 1 · Approve 授權請求 */}

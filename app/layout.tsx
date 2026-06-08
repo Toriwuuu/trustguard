@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import { Inter, Noto_Sans_TC, Geist_Mono } from "next/font/google";
+import { Geist, Noto_Sans_TC, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({
-  variable: "--font-inter",
+const geist = Geist({
+  variable: "--font-geist",
   subsets: ["latin"],
   display: "swap",
 });
@@ -44,14 +44,14 @@ export default function RootLayout({
   return (
     <html
       lang="zh-TW"
-      className={`${inter.variable} ${notoTC.variable} ${geistMono.variable} dark h-full antialiased`}
+      className={`${geist.variable} ${notoTC.variable} ${geistMono.variable} dark h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-background text-foreground relative isolate">
         {/* 鍵盤使用者的跳過導航：只有 Tab 聚焦時才現身 */}
         <a href="#main-content" className="skip-to-content">
           跳至主要內容
         </a>
-        {/* 全站底紋：細點陣 + 上方 radial mask，遠看像紙張 texture */}
+        {/* 全站底紋：細點陣 + 上方 radial mask */}
         <div
           aria-hidden="true"
           className="pointer-events-none fixed inset-0 -z-10"
@@ -65,6 +65,8 @@ export default function RootLayout({
               "radial-gradient(ellipse 90% 70% at 50% 10%, black 30%, transparent 85%)",
           }}
         />
+        {/* Grain noise：讓畫面有紙質觸感 */}
+        <div aria-hidden="true" className="grain-overlay" />
         {children}
       </body>
     </html>

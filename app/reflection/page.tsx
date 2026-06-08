@@ -12,6 +12,7 @@ import { Button } from "@/components/ui/button";
 import { SiteTopBar } from "@/components/layout/SiteTopBar";
 import { Aurora } from "@/components/ui/aurora";
 import { Reveal } from "@/components/ui/reveal";
+import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { ArrowRight, ArrowLeft } from "lucide-react";
 
 export default function ReflectionPage() {
@@ -23,32 +24,24 @@ export default function ReflectionPage() {
       <main id="main-content" className="max-w-4xl mx-auto px-4 md:px-8">
         {/* Hero */}
         <section className="pt-24 pb-16">
-          <Badge
-            variant="outline"
-            className="mb-6 font-mono animate-fade-up"
-            style={{ animationDelay: "0ms" }}
-          >
-            Reflection · Post-mortem
-          </Badge>
+          <ScrollReveal stagger={0.1}>
+            <Badge variant="outline" className="mb-6 font-mono">
+              Reflection · Post-mortem
+            </Badge>
 
-          <h1
-            className="text-4xl sm:text-5xl md:text-6xl font-semibold tracking-tight leading-[1.05] mb-6 animate-fade-up"
-            style={{ animationDelay: "80ms" }}
-          >
-            每個設計決定，
-            <br />
-            <span className="text-primary">都有代價</span>
-          </h1>
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-semibold tracking-tight leading-[1.05] mb-6">
+              每個設計決定，
+              <br />
+              <span className="text-primary">都有代價</span>
+            </h1>
 
-          <p
-            className="text-lg text-muted-foreground leading-relaxed max-w-2xl animate-fade-up"
-            style={{ animationDelay: "180ms" }}
-          >
-            這頁不是作品成果展示 — 而是把 TrustGuard
-            做下去的過程裡，我選了什麼、放棄了什麼、哪裡沒想清楚。
-            作品集能看出一個設計師「做過什麼」，但 reflection
-            才看得出「怎麼思考」。
-          </p>
+            <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl">
+              這頁不是作品成果展示 — 而是把 TrustGuard
+              做下去的過程裡，我選了什麼、放棄了什麼、哪裡沒想清楚。
+              作品集能看出一個設計師「做過什麼」，但 reflection
+              才看得出「怎麼思考」。
+            </p>
+          </ScrollReveal>
         </section>
 
         {/* Trade-offs */}

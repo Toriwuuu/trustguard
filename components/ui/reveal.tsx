@@ -1,11 +1,18 @@
+"use client";
+
 /* ============================================
    Reveal · 入場動畫包裝器
    -------------------------------------------
-   把子內容在 mount 時以 fade-up 呈現，
+   把子內容在「捲動進入視窗」時以 fade-up 呈現，
    可透過 delay (ms) 做多個區塊的 stagger 節奏。
-   以純 CSS 動畫實作 — 比 framer-motion 省；
-   尊重 prefers-reduced-motion。
+
+   2026-06 升級：底層改用 GSAP ScrollTrigger（委派給 ScrollReveal），
+   所以折線下方的內容會等捲到才進場，而不是一載入就全播。
+   API 與舊版相容（as / delay(ms) / duration(ms) / className），
+   既有頁面不需修改。仍尊重 prefers-reduced-motion。
    ============================================ */
+
+import { ScrollReveal } from "@/components/ui/scroll-reveal";
 
 type RevealProps = {
   as?: "div" | "section" | "article" | "li" | "header";
@@ -16,21 +23,20 @@ type RevealProps = {
 };
 
 export function Reveal({
-  as: Tag = "div",
+  as = "div",
   delay = 0,
   duration,
   className = "",
   children,
 }: RevealProps) {
   return (
-    <Tag
-      className={`animate-fade-up ${className}`}
-      style={{
-        animationDelay: `${delay}ms`,
-        ...(duration ? { animationDuration: `${duration}ms` } : {}),
-      }}
+    <ScrollReveal
+      as={as}
+      delay={delay / 1000}
+      duration={duration ? duration / 1000 : undefined}
+      className={className}
     >
       {children}
-    </Tag>
+    </ScrollReveal>
   );
 }

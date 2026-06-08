@@ -10,7 +10,7 @@
    右：最後行動一句話 + PanicButton（快速撤銷入口）
    ============================================ */
 
-import { Bot } from "lucide-react";
+import { Cpu } from "lucide-react";
 import { StatusIndicator } from "./StatusIndicator";
 import { PanicButton } from "./PanicButton";
 import type { AgentProfile } from "@/lib/mock-data";
@@ -40,7 +40,7 @@ export function AgentHeader({
             color: "var(--primary)",
           }}
         >
-          <Bot className="size-5" />
+          <Cpu className="size-5" />
         </div>
         <div className="min-w-0 flex-1">
           <div className="flex items-center gap-2 flex-wrap">

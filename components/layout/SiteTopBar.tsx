@@ -56,7 +56,7 @@ export function SiteTopBar({ sticky = true }: { sticky?: boolean }) {
                 href={item.href}
                 className={
                   isActive
-                    ? "text-foreground font-medium"
+                    ? "text-foreground font-medium relative after:absolute after:bottom-[-18px] after:left-0 after:right-0 after:h-[2px] after:rounded-full after:bg-primary"
                     : "text-muted-foreground hover:text-foreground transition-colors"
                 }
               >

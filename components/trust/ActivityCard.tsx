@@ -147,14 +147,14 @@ export function ActivityCard({
           <button
             type="button"
             onClick={() => onApprove?.(activity.id)}
-            className="flex-1 h-9 rounded-md bg-primary text-primary-foreground text-sm font-medium hover:opacity-90 transition-opacity"
+            className="flex-1 h-9 rounded-md bg-primary text-primary-foreground text-sm font-medium hover:brightness-110 active:scale-[0.97] transition-all"
           >
             同意執行
           </button>
           <button
             type="button"
             onClick={() => onReject?.(activity.id)}
-            className="flex-1 h-9 rounded-md border border-border text-sm font-medium hover:bg-accent transition-colors"
+            className="flex-1 h-9 rounded-md border border-border text-sm font-medium hover:bg-accent hover:border-primary/20 active:scale-[0.97] transition-all"
           >
             維持現狀
           </button>

@@ -20,6 +20,7 @@ import {
 } from "lucide-react";
 import { SiteTopBar } from "@/components/layout/SiteTopBar";
 import { Aurora } from "@/components/ui/aurora";
+import { RevealSections } from "@/components/ui/reveal-sections";
 import { ConfidenceScore } from "@/components/trust/ConfidenceScore";
 import { StatusIndicator } from "@/components/trust/StatusIndicator";
 import { ActivityCard } from "@/components/trust/ActivityCard";
@@ -49,6 +50,7 @@ export default function DesignSystemPage() {
     <div className="min-h-screen relative isolate overflow-x-clip">
       <Aurora intensity="subtle" />
       <SiteTopBar />
+      <RevealSections />
 
       <div className="max-w-7xl mx-auto px-4 md:px-8 flex gap-12">
         {/* Sidebar nav */}
@@ -74,33 +76,20 @@ export default function DesignSystemPage() {
         <main id="main-content" className="flex-1 min-w-0 pt-16 pb-32 space-y-24">
           {/* Hero */}
           <section>
-            <Badge
-              variant="outline"
-              className="mb-4 font-mono text-xs animate-fade-up"
-              style={{ animationDelay: "0ms" }}
-            >
+            <Badge variant="outline" className="mb-4 font-mono text-xs">
               v0.2 · Living Spec
             </Badge>
-            <h1
-              className="text-5xl font-semibold tracking-tight mb-4 animate-fade-up"
-              style={{ animationDelay: "80ms" }}
-            >
+            <h1 className="text-5xl font-semibold tracking-tight mb-4">
               Design System
             </h1>
-            <p
-              className="text-lg text-muted-foreground leading-relaxed max-w-2xl animate-fade-up"
-              style={{ animationDelay: "180ms" }}
-            >
+            <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl">
               TrustGuard 是為 AI 投資代理人設計的信任 UX 探索。
               這套系統以 <span className="text-foreground">深色暖調 + 溫暖橙</span>{" "}
               為核心，所有元件圍繞 5 條設計原則展開。
             </p>
 
             {/* Philosophy pullquote */}
-            <div
-              className="mt-10 pl-6 border-l-2 border-primary animate-fade-up"
-              style={{ animationDelay: "280ms" }}
-            >
+            <div className="mt-10 pl-6 border-l-2 border-primary">
               <p className="text-base leading-relaxed italic text-foreground/90">
                 &ldquo;使用者最害怕的不是 AI 做錯選擇，
                 <br />
@@ -112,10 +101,7 @@ export default function DesignSystemPage() {
             </div>
 
             {/* About this spec */}
-            <div
-              className="mt-10 rounded-xl border border-border bg-card p-6 animate-fade-up"
-              style={{ animationDelay: "380ms" }}
-            >
+            <div className="mt-10 rounded-xl border border-border bg-card p-6">
               <div className="flex items-center gap-2 mb-3">
                 <span
                   className="text-[11px] font-mono uppercase tracking-wider px-2 py-0.5 rounded"
